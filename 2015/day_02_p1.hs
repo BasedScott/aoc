@@ -1,8 +1,7 @@
 {- cabal:
-	build-depends: base, regex-base
+	build-depends: base, split, regex-tdfa
 -}
 module Main where
-import Text.Regex.*
 
 main :: IO()
 main = do
