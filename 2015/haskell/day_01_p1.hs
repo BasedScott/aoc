@@ -8,5 +8,5 @@ floorConvert = sum . map replace -- floorConvert x = sum AND map replace x
 
 main :: IO ()
 main = do
-    floors <- readFile "day_01_rd.txt"
+    floors <- readFile "/home/lenin/projects/aoc/2015/data/day01.txt"
     print $ floorConvert floors

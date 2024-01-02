@@ -1,6 +1,6 @@
 import re
 
-with open("2015/day_02_rd.txt", "r") as file:
+with open("2015/data/day02.txt", "r") as file:
     text = file.read()
 
 numbers = re.findall("[0-9]+", text)
