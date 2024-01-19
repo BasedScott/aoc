@@ -7,17 +7,23 @@ defmodule Day01 do
 end
 
 defmodule Convert do
-  def convert([]), do: 0
+  def convert([]), do: []
 
   def convert([head | tail]) do
-    if head == "(" do
-      String.replace(head, "(", "1")
+    item =
+      if head == "(" do
+        String.replace(head, "(", "1")
+      else
+        String.replace(head, ")", "-1", global: true)
+      end
       |> String.to_integer()
-      |> IO.puts()
-    else
-      String.replace(head, ")", "-1", global: true)
-    end
 
-    convert(tail)
+    Enum.to_list([item | convert(tail)])
   end
 end
+
+defmodule Answer do
+  def answer(), do: IO.puts(Enum.sum(Convert.convert(Day01.data())))
+end
+
+Answer.answer()
