@@ -23,7 +23,13 @@ defmodule Convert do
 end
 
 defmodule Answer do
-  def answer(), do: IO.puts(Enum.sum(Convert.convert(Day01.data())))
+  def answer_part_1() do
+    Enum.sum(Convert.convert(Day01.data()))
+    |> IO.inspect(label: "Part 1")
+  end
+
+  def answer_part_2() do
+  end
 end
 
-Answer.answer()
+Answer.answer_part_1()
