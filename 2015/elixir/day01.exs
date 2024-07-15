@@ -1,6 +1,8 @@
 defmodule Day01 do
+  @data Path.join(Path.expand(".."), "/data/day01.txt")
+
   def data do
-    Path.expand("aoc/2015/data/day01.txt", "~/projects")
+    @data
     |> File.read!()
     |> String.split("", trim: true)
   end

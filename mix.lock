@@ -1,0 +1,4 @@
+%{
+  "contex": {:hex, :contex, "0.5.0", "5d8a6defbeb41f54adfcb0f85c4756d4f2b84aa5b0d809d45a5d2e90d91d0392", [:mix], [{:nimble_strftime, "~> 0.1.0", [hex: :nimble_strftime, repo: "hexpm", optional: false]}], "hexpm", "b7497a1790324d84247859df44ba4bcf2489d9bba1812a5375b2f2046b9e6fd7"},
+  "nimble_strftime": {:hex, :nimble_strftime, "0.1.1", "b988184d1bd945bc139b2c27dd00a6c0774ec94f6b0b580083abd62d5d07818b", [:mix], [], "hexpm", "89e599c9b8b4d1203b7bb5c79eb51ef7c6a28fbc6228230b312f8b796310d755"},
+}
