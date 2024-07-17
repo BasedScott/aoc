@@ -24,14 +24,31 @@ defmodule Convert do
   end
 end
 
+defmodule Count do
+  @answer Convert.convert(Day01.data())
+  def count([head | tail], acc) when acc > -1 do
+    acc = head + acc
+    count(tail, acc)
+  end
+
+  def count(tail, _) do
+    pos = Enum.count(tail) - Enum.count(@answer)
+    Kernel.abs(pos)
+  end
+end
+
 defmodule Answer do
+  @answer Convert.convert(Day01.data())
   def part_1() do
-    Enum.sum(Convert.convert(Day01.data()))
+    Enum.sum(@answer)
     |> IO.inspect(label: "Part 1")
   end
 
   def part_2() do
+    Count.count(@answer, 0)
+    |> IO.inspect(label: "Part 2")
   end
 end
 
 Answer.part_1()
+Answer.part_2()
