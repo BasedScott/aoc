@@ -4,12 +4,12 @@ defmodule Day02 do
         |> String.split()
 
   def part_1() do
-    Enum.sum(Parse.parse(@data))
+    Enum.sum(ParsePart1.parse(@data))
     |> IO.inspect(label: "Part 1")
   end
 end
 
-defmodule Parse do
+defmodule ParsePart1 do
   def parse([]), do: []
 
   def parse([head | tail]) do
