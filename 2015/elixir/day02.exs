@@ -4,8 +4,15 @@ defmodule Day02 do
         |> String.split()
 
   def part_1() do
-    Enum.sum(ParsePart1.parse(@data))
+    ParsePart1.parse(@data)
+    |> Enum.sum()
     |> IO.inspect(label: "Part 1")
+  end
+
+  def part_2() do
+    ParsePart2.parse(@data)
+    |> Enum.sum()
+    |> IO.inspect(label: "Part 2")
   end
 end
 
@@ -44,5 +51,38 @@ defmodule ParsePart1 do
   end
 end
 
-# Parse.parse(Day02.parse())
+defmodule ParsePart2 do
+  def parse([]), do: []
+
+  def parse([head | tail]) do
+    l =
+      Regex.split(~r{[x]}, head)
+      |> Enum.at(0)
+      |> String.to_integer()
+
+    w =
+      Regex.split(~r{[x]}, head)
+      |> Enum.at(1)
+      |> String.to_integer()
+
+    h =
+      Regex.split(~r{[x]}, head)
+      |> Enum.at(2)
+      |> String.to_integer()
+
+    bow = l * w * h
+
+    ribbon =
+      Enum.sort([l, w, h], :asc)
+      |> Enum.slice(0, 2)
+      |> Enum.map(fn x -> x + x end)
+      |> Enum.sum()
+
+    box = Enum.sum([bow, ribbon])
+
+    Enum.to_list([box | parse(tail)])
+  end
+end
+
 Day02.part_1()
+Day02.part_2()
