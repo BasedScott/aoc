@@ -5,25 +5,33 @@ defmodule Day03 do
 
   def part_1() do
     # IO.inspect(@data)
-    ParsePart1.parse(@data)
+    @data
+    |> Parse.parse()
+    |> Parse.path()
   end
 end
 
-defmodule ParsePart1 do
+defmodule Parse do
   def parse([]), do: []
 
   def parse([head | tail]) do
-    map = [
-      %{"^" => [x: 1]},
-      %{">" => [y: 1]},
-      %{"v" => [x: -1]},
-      %{"<" => [y: -1]}
-    ]
-
-    cord = Map.values(map)
+    cord = Convert.cord(head)
 
     Enum.to_list([cord | parse(tail)])
   end
+  def path([]), do: []
+  def path([head | tail]) do
+
+  end
 end
 
-Day03.part_1()
+defmodule Convert do
+  def cord("^"), do: [y: 1]
+  def cord(">"), do: [x: 1]
+  def cord("v"), do: [y: -1]
+  def cord("<"), do: [x: -1]
+  def step(:x), do: [x: ]
+  def step(:y), do: [y: ]
+end
+
+IO.inspect(Day03.part_1())
