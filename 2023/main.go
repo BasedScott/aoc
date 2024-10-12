@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -11,5 +12,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(data)
+	line := strings.Split(string(data), "\n")
+	//var := 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 string
+	//for line := cou
+	fmt.Println(len(line))
 }
