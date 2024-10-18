@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -12,8 +13,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	line := strings.Split(string(data), "\n")
-	//var := 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 string
-	//for line := cou
-	fmt.Println(len(line))
+	var line = strings.Split(string(data), "\n")
+
+	for _, cord := range line {
+		re := regexp.MustCompile("[a-zA-Z]")
+		fmt.Println(re.ReplaceAllString(cord, ""))
+
+
+		//USE strings.NewReplacer for part 2
+		// for _,each_cord_char := range each_cord {
+		// 	fmt.Println(each_cord_char)
+		// }
+	}
 }
