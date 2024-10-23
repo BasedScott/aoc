@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"regexp"
 	"strings"
 )
 
@@ -14,14 +13,20 @@ func main() {
 		log.Fatal(err)
 	}
 	var line = strings.Split(string(data), "\n")
+	// var answer_part = []int{}
 
-	for _, cord := range line {
-		re := regexp.MustCompile("[a-zA-Z]")
-		fmt.Println(re.ReplaceAllString(cord, ""))
-
-		//USE strings.NewReplacer for part 2
-		// for _,each_cord_char := range each_cord {
-		// 	fmt.Println(each_cord_char)
-		// }
+	for _, ele := range line {
+		for _, ele_char := range ele {
+			if err != nil {
+				fmt.Println("Nope?", err)
+				panic(err)
+			}
+			if int(ele_char) >= int(rune('9')) {
+				fmt.Println("What is here?", string(ele_char), ele_char, int(rune('9')), len(ele))
+			} else {
+				fmt.Print("WAHT THE FAK", "\n")
+			}
+		}
+		// make([]int, ele)
 	}
 }
