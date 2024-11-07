@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
-var answer_list []byte
+var answer_list []int
 
 func main() {
 	data, err := os.ReadFile("data/day01.txt")
@@ -25,9 +26,25 @@ func main() {
 				answer_part = append(answer_part, ele_char)
 			}
 		}
-		f := answer_part[0]
-		l := answer_part[len(answer_part)-1]
-		answer_list = append(answer_list, f, l)
+		if len(answer_part) == 0 {
+
+		} else {
+			f := string(answer_part[0])
+			l := string(answer_part[len(answer_part)-1])
+			x, err := strconv.Atoi(strings.Join([]string{f, l}, ""))
+			answer_list = append(answer_list, x)
+			if err != nil {
+				panic(err)
+			}
+		}
 	}
-	fmt.Println(answer_list)
+	fmt.Println(sumlist(answer_list))
+}
+
+func sumlist(x []int) int {
+	sum := 0
+	for _, ele := range x {
+		sum += ele
+	}
+	return sum
 }
