@@ -1,32 +1,33 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
 
+var answer_list []byte
+
 func main() {
 	data, err := os.ReadFile("data/day01.txt")
+	line := bytes.Split(data, []byte("\n"))
+
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-	var line = strings.Split(string(data), "\n")
-	// var answer_part = []int{}
 
 	for _, ele := range line {
+		var answer_part []byte
 		for _, ele_char := range ele {
-			if err != nil {
-				fmt.Println("Nope?", err)
-				panic(err)
-			}
-			if int(ele_char) >= int(rune('9')) {
-				fmt.Println("What is here?", string(ele_char), ele_char, int(rune('9')), len(ele))
-			} else {
-				fmt.Print("WAHT THE FAK", "\n")
+			check := strings.ContainsAny(string(ele_char), "123456789")
+			if check == true {
+				answer_part = append(answer_part, ele_char)
 			}
 		}
-		// make([]int, ele)
+		f := answer_part[0]
+		l := answer_part[len(answer_part)-1]
+		answer_list = append(answer_list, f, l)
 	}
+	fmt.Println(answer_list)
 }
