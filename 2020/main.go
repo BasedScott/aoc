@@ -11,14 +11,23 @@ import (
 var intslice []int
 
 func main() {
+	part1()
+	part2()
+}
+
+func part2() int {
+	return 0
+}
+
+func part1() int {
 	data()
 	d := intslice
 loop:
 	for {
 		for k, i := range d {
 			if i+d[0] == 2020 {
-				fmt.Println("Day01 :", i*d[0], i, d[0])
-				break
+				ok, _ := fmt.Println("Day01 :", i*d[0], i, d[0])
+				return ok
 			} else if k == len(d)-1 {
 				d = slices.Delete(d, 0, 1)
 				continue loop
@@ -27,7 +36,7 @@ loop:
 		}
 		break
 	}
-
+	return 0
 }
 
 func data() []int {
