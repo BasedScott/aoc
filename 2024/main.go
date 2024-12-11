@@ -14,21 +14,27 @@ var list_two []int
 func main() {
 	data()
 	fmt.Println("Part 1: ", part1())
+	fmt.Println("Part 2: ", part2())
 }
 
 func part1() int {
 	var answer int
-	slices.Sort(list_one)
-	slices.Sort(list_two)
+	a := slices.Clone(list_one)
+	b := slices.Clone(list_two)
+	slices.Sort(a)
+	slices.Sort(b)
 
 	for k, _ := range list_one {
-		a := list_one[k] - list_two[k]
+		a := a[k] - b[k]
 		answer = answer + abs(a)
 	}
 	return answer
 }
-func part2() {
-
+func part2() int {
+	var answer int
+	a := slices.Clone(list_one)
+	b := slices.Clone(list_two)
+	return answer
 }
 func data() {
 	data, _ := os.ReadFile("data/day01.txt")
