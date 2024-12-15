@@ -32,8 +32,23 @@ func part1() int {
 }
 func part2() int {
 	var answer int
+
 	a := slices.Clone(list_one)
 	b := slices.Clone(list_two)
+
+	for k, _ := range a {
+		pos := k
+		amt := 0
+		for _, l := range b {
+			if a[pos] == l {
+				amt = amt + 1
+			} else {
+				continue
+			}
+		}
+		answer = answer + (a[pos] * amt)
+	}
+
 	return answer
 }
 func data() {
