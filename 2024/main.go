@@ -4,16 +4,62 @@ import (
 	"bytes"
 	"fmt"
 	"os"
+	"slices"
 	"strconv"
 )
 
 func main() {
-	// fmt.Println("data ", data())
 	fmt.Println("Part 1: ", part1(data()))
+	fmt.Println("Part 2: ", part2(data()))
 }
 func part1(iss [][]int) int {
+	var answer int
+	iss = report(iss)
+
+	for _, m := range iss {
+		for k, l := range m {
+			if (abs(sum(m)) != asum(m)) || (abs(l) > 3) || (l == 0) {
+				break
+			}
+			if k+1 == len(m) {
+				// fmt.Println(o, m, sum(m), asum(m), abs(sum(m)), l)
+				answer = answer + 1
+			}
+		}
+	}
+	return answer
+}
+func part2(iss [][]int) int {
+	var answer int
+	iss = report(iss)
+
+	for _, m := range iss {
+		for k, l := range m {
+			if (abs(sum(m)) != asum(m)) || (abs(l) > 3) || (l == 0) {
+				olen := len(m)
+				fmt.Println(m, olen, len(m), k, l)
+				m = slices.Delete(m, k, k+1)
+				fmt.Println(m, olen, len(m), k, l)
+				if len(m) < olen {
+					fmt.Println(m, olen, len(m), k, l)
+					break
+				} else if (abs(sum(m)) != asum(m)) || (abs(l) > 3) || (l == 0) {
+					break
+				}
+
+			}
+			if k+1 == len(m) {
+				// fmt.Println(o, m, sum(m), asum(m), abs(sum(m)), l)
+				answer = answer + 1
+			}
+		}
+	}
+	return answer
+}
+func report(iss [][]int) [][]int {
 	var report_part []int
 	var report [][]int
+
 	for _, m := range iss {
 		for k, _ := range m {
 			if k == len(m)-1 {
@@ -28,35 +74,8 @@ func part1(iss [][]int) int {
 		report = append(report, report_part)
 		report_part = nil
 	}
-	answer := report_test(report)
-	return answer
-}
-func report_test(iss [][]int) int {
-	var success int
-	fmt.Println(iss)
 
-	for o, m := range iss {
-
-		for k, l := range m {
-			if abs(sum(m)) != asum(m) {
-				// fmt.Println(m, sum(m), asum(m), abs(sum(m)), l)
-				break
-			} else if abs(l) > 3 {
-				// fmt.Println("first", m, l)
-				break
-			} else if l == 0 {
-				// fmt.Println("second", m, l)
-				break
-			}
-			if k+1 == len(m) {
-				fmt.Println(o, m, sum(m), asum(m), abs(sum(m)), l)
-				success = success + 1
-			}
-
-		}
-
-	}
-	return success
+	return report
 }
 func data() [][]int {
 	data, _ := os.ReadFile("data/day02.txt")
@@ -72,7 +91,6 @@ func data() [][]int {
 			list_part = append(list_part, i)
 		}
 		list = append(list, list_part)
-
 	}
 	list = list[0:(len(list) - 1)]
 	return list
@@ -96,6 +114,5 @@ func asum(is []int) int {
 	for _, l := range is {
 		sum = sum + abs(l)
 	}
-
 	return sum
 }
