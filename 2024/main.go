@@ -10,7 +10,7 @@ import (
 
 func main() {
 	fmt.Println("Part 1: ", part1(data()))
-	fmt.Println("Part 2: ", part2(data()))
+	fmt.Println("Part 2: ", part2(data()), "649, 650 is wrong")
 }
 func part1(iss [][]int) int {
 	var answer int
@@ -31,25 +31,41 @@ func part1(iss [][]int) int {
 }
 func part2(iss [][]int) int {
 	var answer int
+	var olen int
 	iss = report(iss)
 
-	for _, m := range iss {
+	for o, m := range iss {
+		olen = len(m)
+	loop:
 		for k, l := range m {
+
 			if (abs(sum(m)) != asum(m)) || (abs(l) > 3) || (l == 0) {
-				olen := len(m)
-				fmt.Println(m, olen, len(m), k, l)
-				m = slices.Delete(m, k, k+1)
-				fmt.Println(m, olen, len(m), k, l)
-				if len(m) < olen {
-					fmt.Println(m, olen, len(m), k, l)
-					break
+				if olen == len(m) {
+					fmt.Println("start", o)
+					fmt.Println("abs(sum()),asum()", abs(sum(m)), asum(m))
+					fmt.Println("m:", m, "olen/len(m):", olen, len(m))
+					fmt.Println("k:", k, "l:", l)
+					fmt.Println("")
+					m = slices.Delete(m, k, k+1)
+					m = slices.Clip(m)
+
+					continue loop
 				} else if (abs(sum(m)) != asum(m)) || (abs(l) > 3) || (l == 0) {
+					fmt.Println("end", o)
+					fmt.Println("abs(sum()),asum()", abs(sum(m)), asum(m))
+					fmt.Println("m:", m, "olen/len(m):", olen, len(m))
+					fmt.Println("k:", k, "l:", l)
+					fmt.Println("")
+					break
+				} else {
+					fmt.Println(o, "point!")
+					answer = answer + 1
 					break
 				}
 
 			}
 			if k+1 == len(m) {
-				// fmt.Println(o, m, sum(m), asum(m), abs(sum(m)), l)
+				fmt.Println(o, "point!!")
 				answer = answer + 1
 			}
 		}
